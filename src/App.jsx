@@ -1,7 +1,22 @@
+import { Route, Routes } from 'react-router-dom';
+import Header from './layout/Header';
+import Footer from './layout/Footer';
+import Shops from './pages/Shops';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import AddShopPage from './pages/AddShopPage';
+
 export default function App() {
   return (
-    <div>
-      <h1>new topic</h1>
-    </div>
-  )
+    <>
+      <Header />
+      <Routes>
+        <Route path='/' element={<LoginPage />} />
+        <Route path='addshop' element={<AddShopPage />} />
+        <Route path='/shops' element={<Shops />} />
+        <Route path='/register' element={<RegisterPage />} />
+      </Routes>
+      <Footer />
+    </>
+  );
 }
