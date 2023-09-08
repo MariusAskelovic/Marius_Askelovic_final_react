@@ -1,9 +1,7 @@
-import AddShopPage from './AddShopPage';
-
 export default function Shops() {
   return (
     <div>
-      <AddShopPage />
+      <h1>TEMPORARY SHOPS.JSX</h1>
     </div>
   );
 }

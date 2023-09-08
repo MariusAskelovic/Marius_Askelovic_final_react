@@ -1,9 +1,6 @@
-export default function RegisterPage() {
+export default function EmailAuth() {
   return (
-    <div className='container py-14 px-10 '>
-      <h3 className='text-white text-xl text-center mb-3'>
-        Create New Account
-      </h3>
+    <div>
       <form className='text-center'>
         <div>
           <input
@@ -20,10 +17,10 @@ export default function RegisterPage() {
           />
         </div>
         <button
-          className='py-1 px-10 bg-white rounded-sm hover:bg-orange-600 transition hover:duration-300'
+          className='py-1 px-10 bg-white rounded-sm hover:bg-orange-600 transition hover:duration-300 text-black mb-2'
           type='submit'
         >
-          Register
+          Login
         </button>
       </form>
     </div>
