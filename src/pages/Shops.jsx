@@ -1,3 +1,9 @@
+import AddShopPage from './AddShopPage';
+
 export default function Shops() {
-  return <div>Shops</div>;
+  return (
+    <div>
+      <AddShopPage />
+    </div>
+  );
 }

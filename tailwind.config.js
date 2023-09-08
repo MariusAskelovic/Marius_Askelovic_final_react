@@ -10,6 +10,13 @@ export default {
     fontFamily: {
       lato: ['Lato', 'sans-serif'],
     },
+    transitionDuration: {
+      200: '200ms',
+      300: '300ms',
+      400: '400ms',
+      500: '500ms',
+      700: '700ms',
+    },
   },
   plugins: [],
 };
