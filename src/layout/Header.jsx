@@ -26,7 +26,7 @@ export default function Header() {
           </NavLink>
           <NavLink
             className='border-b-2 pb-1 border-transparent hover:border-orange-600 duration-400 hover:duration-200'
-            to={'/login'}
+            to={'/'}
           >
             Login
           </NavLink>
@@ -38,7 +38,7 @@ export default function Header() {
           </NavLink>
           <NavLink
             className='border-b-2 pb-1 border-transparent hover:border-orange-600 duration-400 hover:duration-200'
-            to={'/login'}
+            to={'/'}
           >
             Logout
           </NavLink>

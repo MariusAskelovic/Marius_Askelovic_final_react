@@ -2,8 +2,10 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 export default function EmailAuth() {
+  const navigate = useNavigate();
   const initialValues = {
     email: '',
     password: '',
@@ -19,19 +21,18 @@ export default function EmailAuth() {
   const formik = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: () => {
       emailLogin(formik.values.email, formik.values.password);
     },
   });
   function emailLogin(email, password) {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
+      .then((userCredentials) => {
+        const user = userCredentials.user.email;
         console.log('user ===', user);
-        // ...
+        navigate('/shops', { replace: true });
+        toast.success(`welcome back ${user}`, { style: { fontSize: '12px' } });
       })
       .catch(() => {
         toast.error('wrong email or password');
