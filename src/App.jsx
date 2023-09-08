@@ -12,7 +12,7 @@ import { useAuth } from './store/AuthProvider';
 export default function App() {
   const ctx = useAuth();
   return (
-    <div>
+    <div className='min-h-screen flex flex-col'>
       <Toaster />
       <Header />
       <Routes>
