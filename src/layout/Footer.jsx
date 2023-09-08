@@ -8,7 +8,7 @@ import {
 import { Link } from 'react-router-dom';
 export default function Footer() {
   return (
-    <footer className='w-full bg-stone-800 py-4 text-white text-sm text-center mt-auto'>
+    <footer className='w-full bg-stone-900 py-4 text-white text-sm text-center mt-auto'>
       <div className='container  grid md:grid-cols-4'>
         <div className='pb-3'>
           <h2 className='font-semibold text-xl'>Shops</h2>
@@ -63,19 +63,49 @@ export default function Footer() {
           <h3 className='font-semibold pb-3'>Social Icons</h3>
           <ul className='flex gap-2 items-center text-neutral-400 justify-center'>
             <li>
-              <FaFacebook className='hover:text-neutral-200' />
+              <Link
+                to={'https://www.facebook.com'}
+                target='_blank'
+                rel='noreferrer'
+              >
+                <FaFacebook className='hover:text-red-600' />
+              </Link>
             </li>
             <li>
-              <FaXTwitter className='hover:text-neutral-200' />
+              <Link
+                to={'https://www.twitter.com'}
+                target='_blank'
+                rel='noreferrer'
+              >
+                <FaXTwitter className='hover:text-red-600' />
+              </Link>
             </li>
             <li>
-              <FaInstagram size={18} className='hover:text-neutral-200' />
+              <Link
+                to={'https://www.instagram.com'}
+                target='_blank'
+                rel='noreferrer'
+              >
+                <FaInstagram size={18} className='hover:text-red-600' />
+              </Link>
             </li>
             <li>
-              <FaYoutube size={20} className='hover:text-neutral-200' />
+              <Link
+                to={'https://www.youtube.com'}
+                target='_blank'
+                rel='noreferrer'
+              >
+                <FaYoutube size={20} className='hover:text-red-600' />
+              </Link>
             </li>
             <li>
-              <FaTiktok className='hover:text-neutral-200' />
+              <Link
+                to={'https://www.tiktok.com'}
+                target='_blank'
+                rel='noreferrer'
+              >
+                <FaTiktok className='hover:text-red-600' />
+              </Link>
             </li>
           </ul>
         </div>

@@ -18,8 +18,8 @@ export default function Header() {
   }
 
   return (
-    <header className='w-full bg-stone-800 py-2'>
-      <div className='container flex justify-between items-center text-white'>
+    <header className='w-full bg-stone-900 py-2'>
+      <div className='container flex justify-between items-center text-zinc-400'>
         <Link to={'/'}>
           <img
             className='h-10 sm:h-12 pl-2 transition-all duration-200'
@@ -27,10 +27,10 @@ export default function Header() {
             alt='logo'
           />
         </Link>
-        <nav className='flex gap-4 uppercase text-xs sm:text-sm transition'>
+        <nav className='flex items-center gap-4 uppercase text-xs sm:text-sm transition'>
           {ctx.loginStatus && (
             <NavLink
-              className='border-b-2 pb-1 border-transparent hover:border-orange-600 duration-400 hover:duration-200'
+              className=' leading-6 py-[2px] duration-400 hover:duration-200 decoration-orange-600  decoration-2 underline-offset-8 hover:underline'
               to={'/shops'}
             >
               Shops
@@ -38,7 +38,7 @@ export default function Header() {
           )}
           {ctx.loginStatus && (
             <NavLink
-              className='border-b-2 pb-1 border-transparent hover:border-orange-600 duration-400 hover:duration-200'
+              className=' leading-6 py-[2px] duration-400 hover:duration-200 decoration-orange-600  decoration-2 underline-offset-8 hover:underline'
               to={'/addshop'}
             >
               Add Shop
@@ -46,7 +46,7 @@ export default function Header() {
           )}
           {!ctx.loginStatus && (
             <NavLink
-              className='border-b-2 pb-1 border-transparent hover:border-orange-600 duration-400 hover:duration-200'
+              className=' leading-6 py-[2px] duration-400 hover:duration-200 decoration-orange-600  decoration-2 underline-offset-8 hover:underline'
               to={'/'}
             >
               Login
@@ -54,7 +54,7 @@ export default function Header() {
           )}
           {!ctx.loginStatus && (
             <NavLink
-              className='border-b-2 pb-1 border-transparent hover:border-orange-600 duration-400 hover:duration-200'
+              className=' leading-6 py-[2px] duration-400 hover:duration-200 decoration-orange-600  decoration-2 underline-offset-8 hover:underline'
               to={'/register'}
             >
               Register
@@ -62,7 +62,7 @@ export default function Header() {
           )}
           {ctx.loginStatus && (
             <NavLink
-              className='border-b-2 pb-1 border-transparent'
+              className=' leading-6 py-[2px] px-3 bg-orange-600 rounded-lg text-white hover:bg-red-600 transition duration-200'
               to={'/'}
               onClick={logout}
             >

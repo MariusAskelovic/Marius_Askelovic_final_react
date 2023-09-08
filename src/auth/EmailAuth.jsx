@@ -31,7 +31,6 @@ export default function EmailAuth() {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredentials) => {
         const user = userCredentials.user.email;
-        console.log('user ===', user);
         navigate('/shops', { replace: true });
         toast.success(`welcome back ${user}`, { style: { fontSize: '12px' } });
       })

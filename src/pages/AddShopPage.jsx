@@ -36,7 +36,6 @@ export default function AddShopPage() {
     initialValues,
     validationSchema,
     onSubmit: (values) => {
-      console.log(values);
       newShop();
     },
   });
@@ -50,8 +49,6 @@ export default function AddShopPage() {
         town: formik.values.town,
         imageUrl: formik.values.imageUrl,
       });
-      console.log('Document written with ID: ', docRef.id);
-      formik.values.shopName = '';
       navigate('/shops');
       toast.success('New shop created');
     } catch (error) {
@@ -59,7 +56,7 @@ export default function AddShopPage() {
     }
   }
   return (
-    <div className='container'>
+    <div className='container py-14'>
       <form className='text-center' onSubmit={formik.handleSubmit}>
         <div>
           <input
@@ -88,6 +85,7 @@ export default function AddShopPage() {
             value={formik.values.town}
           />
           <textarea
+            rows={3}
             className='w-full py-1 px-2 mb-2'
             placeholder='Description'
             id='description'

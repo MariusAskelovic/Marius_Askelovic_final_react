@@ -9,10 +9,8 @@ export default function Shops() {
     const querySnapshot = await getDocs(collection(db, 'shops'));
     const tempArr = [];
     querySnapshot.forEach((doc) => {
-      console.log(`${doc.id} => ${doc.data()}`);
-      tempArr.push(doc.data());
+      tempArr.push({ id: doc.id, ...doc.data() });
     });
-    console.log('tempArr ===', tempArr);
     setDbData(tempArr);
   }
 
@@ -23,8 +21,12 @@ export default function Shops() {
     <div className='container'>
       <ul>
         {dbData.map((sObj) => (
-          <li key={sObj.shopName}>
-            <img src={sObj.imageUrl} alt='alt' />
+          <li key={sObj.id}>
+            <img
+              className='h-[200px] w-full object-cover'
+              src={sObj.imageUrl}
+              alt={sObj.shopName}
+            />
           </li>
         ))}
       </ul>
