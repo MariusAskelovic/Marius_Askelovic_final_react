@@ -1,8 +1,12 @@
+import { addDoc, collection } from 'firebase/firestore';
 import { useFormik } from 'formik';
-import { toast } from 'react-hot-toast';
 import * as Yup from 'yup';
+import { db } from '../firebase/firebase';
+import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 export default function AddShopPage() {
+  const navigate = useNavigate();
   const initialValues = {
     shopName: '',
     description: '',
@@ -32,8 +36,27 @@ export default function AddShopPage() {
     validationSchema,
     onSubmit: (values) => {
       console.log(values);
+      newShop();
     },
   });
+
+  async function newShop() {
+    try {
+      const docRef = await addDoc(collection(db, 'shops'), {
+        shopName: formik.values.shopName,
+        description: formik.values.description,
+        startYear: formik.values.startYear,
+        town: formik.values.town,
+        imageUrl: formik.values.imageUrl,
+      });
+      console.log('Document written with ID: ', docRef.id);
+      formik.values.shopName = '';
+      navigate('/shops');
+      toast.success('New shop created');
+    } catch (error) {
+      toast.error(error);
+    }
+  }
   return (
     <div className='container'>
       <form className='text-center' onSubmit={formik.handleSubmit}>
