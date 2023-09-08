@@ -6,10 +6,12 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import AddShopPage from './pages/AddShopPage';
 import NotFoundPage from './pages/NotFoundPage';
+import { Toaster } from 'react-hot-toast';
 
 export default function App() {
   return (
-    <>
+    <div>
+      <Toaster />
       <Header />
       <Routes>
         <Route path='/' element={<LoginPage />} />
@@ -20,6 +22,6 @@ export default function App() {
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
       <Footer />
-    </>
+    </div>
   );
 }

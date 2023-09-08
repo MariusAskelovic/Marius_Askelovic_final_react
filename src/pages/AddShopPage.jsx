@@ -1,4 +1,5 @@
 import { useFormik } from 'formik';
+import { toast } from 'react-hot-toast';
 import * as Yup from 'yup';
 
 export default function AddShopPage() {
@@ -45,6 +46,7 @@ export default function AddShopPage() {
             onChange={formik.handleChange}
             value={formik.values.shopName}
           />
+
           <input
             className='w-full py-1 px-2 mb-2'
             type='number'
