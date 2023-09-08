@@ -1,6 +1,8 @@
+import Button from '../components/Button';
+
 export default function RegisterPage() {
   return (
-    <div className='container py-14 px-10 '>
+    <div className='container py-20 '>
       <h3 className='text-white text-xl text-center mb-3'>
         Create New Account
       </h3>
@@ -19,12 +21,7 @@ export default function RegisterPage() {
             id='password'
           />
         </div>
-        <button
-          className='py-1 px-10 bg-white rounded-sm hover:bg-orange-600 transition hover:duration-300'
-          type='submit'
-        >
-          Register
-        </button>
+        <Button>Register</Button>
       </form>
     </div>
   );

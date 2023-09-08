@@ -20,8 +20,7 @@ export default function Shops() {
     getDbData();
   }, []);
   return (
-    <div>
-      <h1 className='text-3xl text-white'>TEMPORARY SHOPS.JSX</h1>
+    <div className='container'>
       <ul>
         {dbData.map((sObj) => (
           <li key={sObj.shopName}>

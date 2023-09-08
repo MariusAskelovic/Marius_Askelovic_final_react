@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import { db } from '../firebase/firebase';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import Button from '../components/Button';
 
 export default function AddShopPage() {
   const navigate = useNavigate();
@@ -102,12 +103,7 @@ export default function AddShopPage() {
             value={formik.values.imageUrl}
           />
         </div>
-        <button
-          className='py-1 px-10 bg-white rounded-sm hover:bg-orange-600 transition hover:duration-300'
-          type='submit'
-        >
-          Create
-        </button>
+        <Button>Create</Button>
       </form>
     </div>
   );
