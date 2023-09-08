@@ -7,8 +7,10 @@ import RegisterPage from './pages/RegisterPage';
 import AddShopPage from './pages/AddShopPage';
 import NotFoundPage from './pages/NotFoundPage';
 import { Toaster } from 'react-hot-toast';
+import { useAuth } from './store/AuthProvider';
 
 export default function App() {
+  const ctx = useAuth();
   return (
     <div>
       <Toaster />
@@ -18,8 +20,10 @@ export default function App() {
         <Route path='addshop' element={<AddShopPage />} />
         <Route path='/shops' element={<Shops />} />
         {/* <Route path='/login' element={<LoginPage />} /> */}
-        <Route path='/register' element={<RegisterPage />} />
-        <Route path='*' element={<NotFoundPage />} />
+        {!ctx.loginStatus && (
+          <Route path='/register' element={<RegisterPage />} />
+        )}
+        {ctx.loginStatus && <Route path='*' element={<NotFoundPage />} />}
       </Routes>
       <Footer />
     </div>
