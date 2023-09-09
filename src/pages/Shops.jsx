@@ -19,14 +19,17 @@ export default function Shops() {
   }, []);
   return (
     <div className='container'>
-      <ul>
+      <ul className='grid sm:grid-cols-2 lg:grid-cols-3'>
         {dbData.map((sObj) => (
-          <li key={sObj.id}>
+          <li key={sObj.id} className='bg-stone-900'>
             <img
-              className='h-[200px] w-full object-cover'
+              className='w-full object-cover aspect-square'
               src={sObj.imageUrl}
               alt={sObj.shopName}
             />
+            <div>
+              <h4>{sObj.year}</h4>
+            </div>
           </li>
         ))}
       </ul>

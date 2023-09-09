@@ -59,47 +59,71 @@ export default function AddShopPage() {
     <div className='container py-14'>
       <form className='text-center' onSubmit={formik.handleSubmit}>
         <div>
-          <input
-            className='w-full py-1 px-2 mb-2'
-            type='text'
-            placeholder='Shop name'
-            id='shopName'
-            onChange={formik.handleChange}
-            value={formik.values.shopName}
-          />
-
-          <input
-            className='w-full py-1 px-2 mb-2'
-            type='number'
-            placeholder='Year we started'
-            id='startYear'
-            onChange={formik.handleChange}
-            value={formik.values.startYear}
-          />
-          <input
-            className='w-full py-1 px-2 mb-2'
-            type='text'
-            placeholder='Town'
-            id='town'
-            onChange={formik.handleChange}
-            value={formik.values.town}
-          />
-          <textarea
-            rows={3}
-            className='w-full py-1 px-2 mb-2'
-            placeholder='Description'
-            id='description'
-            onChange={formik.handleChange}
-            value={formik.values.description}
-          ></textarea>
-          <input
-            className='w-full py-1 px-2 mb-3'
-            type='url'
-            placeholder='Image Link'
-            id='imageUrl'
-            onChange={formik.handleChange}
-            value={formik.values.imageUrl}
-          />
+          <div className='mb-3'>
+            <input
+              className='w-full py-1 px-2 mb-2'
+              type='text'
+              placeholder='Shop name'
+              id='shopName'
+              onChange={formik.handleChange}
+              value={formik.values.shopName}
+            />
+            {formik.errors.shopName && formik.touched.shopName && (
+              <p className='text-red-600'>{formik.errors.shopName}</p>
+            )}
+          </div>
+          <div className='mb-3'>
+            <input
+              className='w-full py-1 px-2 mb-2'
+              type='number'
+              placeholder='Year we started'
+              id='startYear'
+              onChange={formik.handleChange}
+              value={formik.values.startYear}
+            />
+            {formik.errors.startYear && formik.touched.startYear && (
+              <p className='text-red-600'>{formik.errors.startYear}</p>
+            )}
+          </div>
+          <div className='mb-3'>
+            <input
+              className='w-full py-1 px-2 mb-2'
+              type='text'
+              placeholder='Town'
+              id='town'
+              onChange={formik.handleChange}
+              value={formik.values.town}
+            />
+            {formik.errors.town && formik.touched.town && (
+              <p className='text-red-600'>{formik.errors.town}</p>
+            )}
+          </div>
+          <div className='mb-3'>
+            <textarea
+              rows={3}
+              className='w-full py-1 px-2 mb-2'
+              placeholder='Description'
+              id='description'
+              onChange={formik.handleChange}
+              value={formik.values.description}
+            ></textarea>
+            {formik.errors.description && formik.touched.description && (
+              <p className='text-red-600'>{formik.errors.description}</p>
+            )}
+          </div>
+          <div className='mb-3'>
+            <input
+              className='w-full py-1 px-2 mb-3'
+              type='url'
+              placeholder='Image Link'
+              id='imageUrl'
+              onChange={formik.handleChange}
+              value={formik.values.imageUrl}
+            />
+            {formik.errors.imageUrl && formik.touched.imageUrl && (
+              <p className='text-red-600'>{formik.errors.imageUrl}</p>
+            )}
+          </div>
         </div>
         <Button>Create</Button>
       </form>
