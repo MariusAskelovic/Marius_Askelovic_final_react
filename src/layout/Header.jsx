@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useAuth } from '../store/AuthProvider';
 import { getAuth, signOut } from 'firebase/auth';
 import { toast } from 'react-hot-toast';
@@ -28,11 +28,13 @@ export default function Header() {
   return (
     <header className='w-full bg-stone-900 py-2'>
       <div className='container flex justify-between items-center text-zinc-400'>
-        <img
-          className='h-10 sm:h-12 transition-all duration-200'
-          src='/images/logo.png'
-          alt='logo'
-        />
+        <Link to={ctx.loginStatus ? '/shops' : '/'}>
+          <img
+            className='h-10 sm:h-12 transition-all duration-200'
+            src='/images/logo.png'
+            alt='logo'
+          />
+        </Link>
         <nav className='hidden items-center gap-4 uppercase text-xs sm:text-sm transition md:flex'>
           {ctx.loginStatus && (
             <NavLink
