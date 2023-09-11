@@ -62,9 +62,9 @@ export default function RegisterPage() {
         Create New Account
       </h3>
       <form className='text-center' onSubmit={formik.handleSubmit}>
-        <div>
+        <div className='flex flex-col justify-center md:w-96 items-center ml-auto mr-auto'>
           <input
-            className='w-full py-1 px-2 mb-2'
+            className='w-full py-1 px-2 mb-3'
             type='email'
             placeholder='email'
             id='email'

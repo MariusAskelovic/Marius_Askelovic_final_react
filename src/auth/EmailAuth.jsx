@@ -39,40 +39,38 @@ export default function EmailAuth() {
       });
   }
   return (
-    <div>
-      <form className='text-center' onSubmit={formik.handleSubmit}>
-        <div>
-          <div className='mb-3'>
-            <input
-              className='w-full py-1 px-2 text-black'
-              type='string'
-              placeholder='email'
-              id='email'
-              onChange={formik.handleChange}
-              value={formik.values.email}
-              onBlur={formik.handleBlur}
-            />
-            {formik.errors.email && formik.touched.email && (
-              <p className='text-red-600'>{formik.errors.email}</p>
-            )}
-          </div>
-          <div className='mb-3'>
-            <input
-              className='w-full py-1 px-2  text-black'
-              type='password'
-              placeholder='password'
-              id='password'
-              onChange={formik.handleChange}
-              value={formik.values.password}
-              onBlur={formik.handleBlur}
-            />
-            {formik.errors.password && formik.touched.password && (
-              <p className='text-red-600'>{formik.errors.password}</p>
-            )}
-          </div>
+    <form className='text-center md:w-96' onSubmit={formik.handleSubmit}>
+      <div>
+        <div className='mb-3'>
+          <input
+            className='w-full py-1 px-2 text-black'
+            type='string'
+            placeholder='email'
+            id='email'
+            onChange={formik.handleChange}
+            value={formik.values.email}
+            onBlur={formik.handleBlur}
+          />
+          {formik.errors.email && formik.touched.email && (
+            <p className='text-red-600'>{formik.errors.email}</p>
+          )}
         </div>
-        <Button>Login</Button>
-      </form>
-    </div>
+        <div className='mb-3'>
+          <input
+            className='w-full py-1 px-2  text-black'
+            type='password'
+            placeholder='password'
+            id='password'
+            onChange={formik.handleChange}
+            value={formik.values.password}
+            onBlur={formik.handleBlur}
+          />
+          {formik.errors.password && formik.touched.password && (
+            <p className='text-red-600'>{formik.errors.password}</p>
+          )}
+        </div>
+      </div>
+      <Button>Login</Button>
+    </form>
   );
 }

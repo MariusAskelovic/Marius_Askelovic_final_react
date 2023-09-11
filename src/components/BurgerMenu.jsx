@@ -25,7 +25,7 @@ export default function BurgerMenu({ isVisible, toggleMenu }) {
         >
           <Link
             className='text-4xl font-bold hover:text-orange-600 transition duration-200'
-            to={'/shops'}
+            to={'/'}
           >
             Shops
           </Link>

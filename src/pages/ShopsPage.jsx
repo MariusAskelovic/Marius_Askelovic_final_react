@@ -5,7 +5,7 @@ import { SlOptions } from 'react-icons/sl';
 import SingleShop from '../components/SingleShop';
 import FilterAndSort from '../components/FilterAndSort';
 
-export default function Shops() {
+export default function ShopsPage() {
   const [dbData, setDbData] = useState([]);
   const [showMoreOptions, setShowMoreOptions] = useState(false);
   const [sortBy, setSortBy] = useState('shopName');
@@ -25,6 +25,7 @@ export default function Shops() {
   }, []);
 
   function toggleMoreOptions() {
+    // setShowMoreOptions(window.innerWidth < 640 ? !showMoreOptions : false);
     setShowMoreOptions(!showMoreOptions);
   }
 
@@ -90,7 +91,7 @@ export default function Shops() {
           handleSearchFilter={handleSearchFilter}
         />
       )}
-      <ul className='grid gap-[30px] sm:grid-cols-2 lg:grid-cols-3 mb-20'>
+      <ul className='grid gap-[30px] sm:grid-cols-2 lg:grid-cols-3 mb-20 transition-all duration-2000'>
         {filteredData.map((sObj) => (
           <SingleShop key={sObj.id} list={sObj} />
         ))}

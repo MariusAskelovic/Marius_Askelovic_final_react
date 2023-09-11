@@ -6,7 +6,7 @@ export default function FilterAndSort({
   handleSearchFilter,
 }) {
   return (
-    <div className='w-full mt-1 mb-3 flex gap-1 transition-all duration-400'>
+    <div className='w-full sm:w-[600px] ml-auto mt-1 mb-3 flex gap-1 transition-all duration-400'>
       <input
         onChange={handleSearch}
         value={searchVal}

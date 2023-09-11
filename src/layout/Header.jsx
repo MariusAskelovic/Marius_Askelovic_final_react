@@ -28,7 +28,7 @@ export default function Header() {
   return (
     <header className='w-full bg-stone-900 py-2'>
       <div className='container flex justify-between items-center text-zinc-400'>
-        <Link to={ctx.loginStatus ? '/shops' : '/'}>
+        <Link to={'/'}>
           <img
             className='h-10 sm:h-12 transition-all duration-200'
             src='/images/logo.png'
