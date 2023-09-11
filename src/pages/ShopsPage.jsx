@@ -76,11 +76,11 @@ export default function ShopsPage() {
   }
 
   return (
-    <div className='container'>
+    <div className='container max-w-7xl'>
       <SlOptions
         onClick={toggleMoreOptions}
         size={16}
-        className='ml-auto mr-1 my-2 text-white hover:text-orange-600 transition duration-200'
+        className='ml-auto mr-2 my-2 text-white hover:text-orange-600 transition duration-200'
       />
       {showMoreOptions && (
         <FilterAndSort

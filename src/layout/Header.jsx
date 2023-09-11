@@ -26,8 +26,8 @@ export default function Header() {
   }
 
   return (
-    <header className='w-full bg-stone-900 py-2'>
-      <div className='container flex justify-between items-center text-zinc-400'>
+    <header className='w-full bg-[#1f1f1f] py-2'>
+      <div className='container max-w-4xl flex justify-between items-center text-zinc-400'>
         <Link to={'/'}>
           <img
             className='h-10 sm:h-12 transition-all duration-200'

@@ -8,8 +8,8 @@ import {
 import { Link } from 'react-router-dom';
 export default function Footer() {
   return (
-    <footer className='w-full bg-stone-900 py-4 text-white text-sm text-center mt-auto'>
-      <div className='container  grid md:grid-cols-4'>
+    <footer className='w-full bg-[#1f1f1f] py-4 text-white text-sm text-center mt-auto'>
+      <div className='container  grid md:grid-cols-4 max-w-4xl'>
         <div className='pb-3'>
           <h2 className='font-semibold text-xl'>Shops</h2>
           <p className='text-neutral-400 leading-6'>

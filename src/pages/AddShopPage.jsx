@@ -58,7 +58,10 @@ export default function AddShopPage() {
   }
   return (
     <div className='container py-14'>
-      <form className='text-center' onSubmit={formik.handleSubmit}>
+      <form
+        className='text-center max-w-4xl ml-auto mr-auto'
+        onSubmit={formik.handleSubmit}
+      >
         <div className='flex flex-col md:flex-row w-full md:gap-3 h-fit'>
           <div className='flex flex-col md:w-1/2'>
             <div className='mb-3'>
@@ -116,7 +119,7 @@ export default function AddShopPage() {
           </div>
           <div className='mb-3 md:mb-5 md:w-1/2'>
             <textarea
-              className='w-full resize-none md:min-h-full'
+              className='w-full resize-none md:min-h-full py-1 px-2'
               placeholder='Description'
               id='description'
               onChange={formik.handleChange}
