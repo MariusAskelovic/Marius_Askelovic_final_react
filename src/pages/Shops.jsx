@@ -8,6 +8,8 @@ export default function Shops() {
   const [dbData, setDbData] = useState([]);
   const [showMoreOptions, setShowMoreOptions] = useState(false);
   const [sortBy, setSortBy] = useState('shopName');
+  const [searchVal, setSearchVal] = useState('');
+  const [filteredData, setFilteredData] = useState([]);
 
   async function getDbData() {
     const querySnapshot = await getDocs(collection(db, 'shops'));
@@ -30,38 +32,47 @@ export default function Shops() {
   }
 
   useEffect(() => {
+    setFilteredData(dbData);
     let sortedData = [...dbData];
     switch (sortBy) {
       case 'shopName':
         sortedData.sort((aObj, bObj) =>
           aObj.shopName.localeCompare(bObj.shopName)
         );
-        console.log('A-Z');
         break;
       case 'shopNameRev':
         sortedData.sort((aObj, bObj) =>
           bObj.shopName.localeCompare(aObj.shopName)
         );
-        console.log('Z-A');
         break;
       case 'year':
         sortedData.sort((aObj, bObj) =>
           aObj.startYear.toString().localeCompare(bObj.startYear)
         );
-        console.log('0-9');
         break;
       case 'yearRev':
         sortedData.sort((aObj, bObj) =>
           bObj.startYear.toString().localeCompare(aObj.startYear)
         );
-        console.log('9-0');
         break;
       default:
         sortedData = [...dbData];
         break;
     }
-    setDbData(sortedData);
-  }, [sortBy]);
+    setFilteredData(sortedData);
+    console.log('ONE RUN');
+  }, [sortBy, dbData]);
+
+  function handleSearch(event) {
+    setSearchVal(event.target.value);
+  }
+
+  function handleSearchFilter() {
+    const newArr = dbData.filter((shopObj) =>
+      shopObj.shopName.toUpperCase().includes(searchVal.toUpperCase())
+    );
+    setFilteredData(newArr);
+  }
 
   return (
     <div className='container'>
@@ -73,10 +84,18 @@ export default function Shops() {
       {showMoreOptions && (
         <div className='w-full mt-1 mb-3 flex gap-1 transition-all duration-400'>
           <input
+            onChange={handleSearch}
+            value={searchVal}
             type='text'
             placeholder='search'
             className='w-full h-7 py-1 px-2 text-sm text-neutral-400 rounded-l-sm'
           />
+          <button
+            onClick={handleSearchFilter}
+            className='w-fit bg-orange-600 px-4 mx-2 text-white pb-[2px]'
+          >
+            Search
+          </button>
           <select
             value={sortBy}
             onChange={handleSortChange}
@@ -90,7 +109,7 @@ export default function Shops() {
         </div>
       )}
       <ul className='grid gap-[30px] sm:grid-cols-2 lg:grid-cols-3 mb-20'>
-        {dbData.map((sObj) => (
+        {filteredData.map((sObj) => (
           <SingleShop key={sObj.id} list={sObj} />
         ))}
       </ul>
