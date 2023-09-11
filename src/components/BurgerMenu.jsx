@@ -15,12 +15,11 @@ export default function BurgerMenu({ isVisible, toggleMenu }) {
         toast.error(error);
       });
   }
-  console.log('isVisible ===', isVisible);
   return (
     <>
       {isVisible && (
         <div
-          className='fixed min-h-screen min-w-full bg-[url(/images/menu-bg.jpg)]
+          className='fixed min-h-screen min-w-full bg-zinc-950 opacity-95
       bg-cover z-50 top-0 left-0 flex flex-col items-center gap-7 justify-center md:hidden'
           onClick={toggleMenu}
         >

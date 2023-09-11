@@ -35,14 +35,14 @@ export default function AddShopPage() {
   const formik = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: (values) => {
+    onSubmit: () => {
       newShop();
     },
   });
 
   async function newShop() {
     try {
-      const docRef = await addDoc(collection(db, 'shops'), {
+      await addDoc(collection(db, 'shops'), {
         shopName: formik.values.shopName,
         description: formik.values.description,
         startYear: formik.values.startYear,
