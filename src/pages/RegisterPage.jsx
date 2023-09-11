@@ -34,11 +34,10 @@ export default function RegisterPage() {
       .then((userCredential) => {
         const user = userCredential.user.email;
         toast.success(`welcome ${user}`, { style: { fontSize: '12px' } });
-        navigate('/shops', { replace: true });
+        navigate('/', { replace: true });
       })
       .catch((error) => {
         const errorCode = error.code;
-        console.log('errorCode ===', errorCode);
         if (errorCode === 'auth/email-already-in-use') {
           toast.error(
             'email already registered \n try login or contact support',

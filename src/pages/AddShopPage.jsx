@@ -49,9 +49,10 @@ export default function AddShopPage() {
         town: formik.values.town,
         imageUrl: formik.values.imageUrl,
       });
-      navigate('/shops');
+      navigate('/');
       toast.success('New shop created');
     } catch (error) {
+      navigate('/');
       toast.error(error);
     }
   }

@@ -23,10 +23,8 @@ export default function AuthProvider(props) {
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log('Login success');
         setFireUser(user);
       } else {
-        console.log('Logout success');
         setFireUser({});
       }
     });

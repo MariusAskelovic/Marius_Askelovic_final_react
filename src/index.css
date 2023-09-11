@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .active {
-  @apply decoration-orange-600  decoration-2 underline-offset-8 underline text-white;
+  @apply decoration-orange-600  decoration-2 underline-offset-[6px] underline text-white;
 }

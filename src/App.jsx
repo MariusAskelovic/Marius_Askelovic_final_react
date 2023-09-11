@@ -16,9 +16,9 @@ export default function App() {
       <Toaster />
       <Header />
       <Routes>
-        {!ctx.loginStatus && <Route path='/' element={<LoginPage />} />}
+        <Route path='/' element={ctx.loginStatus ? <Shops /> : <LoginPage />} />
         {ctx.loginStatus && <Route path='addshop' element={<AddShopPage />} />}
-        {ctx.loginStatus && <Route path='/shops' element={<Shops />} />}
+        {/* {ctx.loginStatus && <Route path='/' element={<Shops />} />} */}
         {/* <Route path='/login' element={<LoginPage />} /> */}
         {!ctx.loginStatus && (
           <Route path='/register' element={<RegisterPage />} />

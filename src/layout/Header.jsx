@@ -38,15 +38,15 @@ export default function Header() {
         <nav className='hidden items-center gap-4 uppercase text-xs sm:text-sm transition sm:flex'>
           {ctx.loginStatus && (
             <NavLink
-              className='leading-6 py-[2px] duration-400 hover:duration-200 decoration-orange-600  decoration-2 underline-offset-8 hover:underline'
-              to={'/shops'}
+              className='leading-6 py-[2px] duration-400 hover:duration-200 decoration-orange-600  decoration-2 underline-offset-[6px] hover:underline'
+              to={'/'}
             >
               Shops
             </NavLink>
           )}
           {ctx.loginStatus && (
             <NavLink
-              className='leading-6 py-[2px] duration-400 hover:duration-200 decoration-orange-600  decoration-2 underline-offset-8 hover:underline'
+              className='leading-6 py-[2px] duration-400 hover:duration-200 decoration-orange-600  decoration-2 underline-offset-[6px] hover:underline'
               to={'/addshop'}
             >
               Add Shop
@@ -54,7 +54,7 @@ export default function Header() {
           )}
           {!ctx.loginStatus && (
             <NavLink
-              className='leading-6 py-[2px] duration-400 hover:duration-200 decoration-orange-600  decoration-2 underline-offset-8 hover:underline'
+              className='leading-6 py-[2px] duration-400 hover:duration-200 decoration-orange-600  decoration-2 underline-offset-[6px] hover:underline'
               to={'/'}
             >
               Login
@@ -62,20 +62,20 @@ export default function Header() {
           )}
           {!ctx.loginStatus && (
             <NavLink
-              className='leading-6 py-[2px] duration-400 hover:duration-200 decoration-orange-600  decoration-2 underline-offset-8 hover:underline'
+              className='leading-6 py-[2px] duration-400 hover:duration-200 decoration-orange-600  decoration-2 underline-offset-[6px] hover:underline'
               to={'/register'}
             >
               Register
             </NavLink>
           )}
           {ctx.loginStatus && (
-            <NavLink
+            <Link
               className='leading-6 py-[2px] px-3 bg-orange-600 rounded-lg text-white hover:bg-red-600 transition duration-200'
               to={'/'}
               onClick={logout}
             >
               Logout
-            </NavLink>
+            </Link>
           )}
         </nav>
         <FaBars
