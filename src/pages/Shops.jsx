@@ -2,6 +2,7 @@ import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase/firebase';
 import { useEffect, useState } from 'react';
 import { SlOptions } from 'react-icons/sl';
+import SingleShop from '../components/SingleShop';
 
 export default function Shops() {
   const [dbData, setDbData] = useState([]);
@@ -47,26 +48,7 @@ export default function Shops() {
       )}
       <ul className='grid gap-[30px] sm:grid-cols-2 lg:grid-cols-3 mb-20'>
         {dbData.map((sObj) => (
-          <li
-            key={sObj.id}
-            className='bg-[#1f1f1f] rounded-lg overflow-hidden group'
-          >
-            <div className='w-full overflow-hidden'>
-              <img
-                className='w-full object-cover aspect-[6/5] group-hover:scale-110 transition duration-700'
-                src={sObj.imageUrl}
-                alt={sObj.shopName}
-              />
-            </div>
-            <div className='p-5 min-h-fit'>
-              <h2 className='mt-[10px] mb-[15px] uppercase text-lg text-orange-600 duration-200 hover:text-[#d1310a] inline-block font-bold'>
-                {sObj.shopName}
-              </h2>
-              <h4 className='text-white w-full duration-200 hover:text-orange-600 inline-block text-sm font-bold max-h-28 overflow-hidden truncate hover:text-ellipsis'>
-                {sObj.description}
-              </h4>
-            </div>
-          </li>
+          <SingleShop key={sObj.id} list={sObj} />
         ))}
       </ul>
     </div>
