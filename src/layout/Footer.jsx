@@ -11,7 +11,7 @@ export default function Footer() {
     <footer className='w-full bg-[#1f1f1f] py-4 text-white text-sm text-center mt-auto'>
       <div className='container  grid md:grid-cols-4 max-w-4xl'>
         <div className='pb-3'>
-          <h2 className='font-semibold text-xl'>Shops</h2>
+          <h2 className='font-semibold text-xl mb-1'>Shops</h2>
           <p className='text-neutral-400 leading-6'>
             Marius A. final project for CodeAcademy JS/React course
           </p>

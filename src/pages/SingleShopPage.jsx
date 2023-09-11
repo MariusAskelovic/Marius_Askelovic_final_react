@@ -13,7 +13,6 @@ export default function SingleShopPage() {
     const docRef = doc(db, 'shops', params.shopId);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
-      console.log('Document data:', docSnap.data());
       setShopData(docSnap.data());
     } else {
       // docSnap.data() will be undefined in this case
@@ -29,7 +28,7 @@ export default function SingleShopPage() {
           {startYear} <span className='px-3'>/</span> {town}
         </h4>
       </div>
-      <img src={imageUrl} alt={`${shopName} company logo`} />
+      <img className='w-full' src={imageUrl} alt={`${shopName} company logo`} />
       <p className='text-[#898989] leading-6 my-5'>{description}</p>
     </div>
   );
