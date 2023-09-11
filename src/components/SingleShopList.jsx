@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export default function SingleShop(props) {
+export default function SingleShopList(props) {
   const { imageUrl, shopName, description, startYear, id } = props.list;
   return (
     <>

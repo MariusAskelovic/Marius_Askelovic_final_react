@@ -2,7 +2,7 @@ import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase/firebase';
 import { useEffect, useState } from 'react';
 import { SlOptions } from 'react-icons/sl';
-import SingleShop from '../components/SingleShop';
+import SingleShop from '../components/SingleShopList';
 import FilterAndSort from '../components/FilterAndSort';
 
 export default function ShopsPage() {
