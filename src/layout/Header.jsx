@@ -35,7 +35,7 @@ export default function Header() {
             alt='logo'
           />
         </Link>
-        <nav className='hidden items-center gap-4 uppercase text-xs sm:text-sm transition md:flex'>
+        <nav className='hidden items-center gap-4 uppercase text-xs sm:text-sm transition sm:flex'>
           {ctx.loginStatus && (
             <NavLink
               className='leading-6 py-[2px] duration-400 hover:duration-200 decoration-orange-600  decoration-2 underline-offset-8 hover:underline'
@@ -79,7 +79,7 @@ export default function Header() {
           )}
         </nav>
         <FaBars
-          className='text-zinc-400 md:hidden'
+          className='text-zinc-400 sm:hidden'
           size={28}
           onClick={toggleBurgerMenu}
         />

@@ -1,5 +1,5 @@
 export default function SingleShop(props) {
-  const { imageUrl, shopName, description } = props.list;
+  const { imageUrl, shopName, description, startYear } = props.list;
   return (
     <>
       <li className='bg-[#1f1f1f] rounded-lg overflow-hidden group'>
@@ -12,7 +12,7 @@ export default function SingleShop(props) {
         </div>
         <div className='p-5 min-h-fit'>
           <h2 className='mt-[10px] mb-[15px] uppercase text-lg text-orange-600 duration-200 hover:text-[#d1310a] inline-block font-bold'>
-            {shopName}
+            {shopName} {startYear}
           </h2>
           <h4 className='text-white w-full duration-200 hover:text-orange-600 inline-block text-sm font-bold max-h-28 overflow-hidden truncate hover:text-ellipsis'>
             {description}

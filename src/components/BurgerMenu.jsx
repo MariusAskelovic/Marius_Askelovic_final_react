@@ -20,7 +20,7 @@ export default function BurgerMenu({ isVisible, toggleMenu }) {
       {isVisible && (
         <div
           className='fixed min-h-screen min-w-full bg-zinc-950 opacity-95
-      bg-cover z-50 top-0 left-0 flex flex-col items-center gap-7 justify-center md:hidden'
+      bg-cover z-50 top-0 left-0 flex flex-col items-center gap-7 justify-center sm:hidden'
           onClick={toggleMenu}
         >
           <Link
