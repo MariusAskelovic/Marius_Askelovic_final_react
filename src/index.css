@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.active {
+  @apply decoration-orange-600  decoration-2 underline-offset-[6px] underline text-white;
+}
