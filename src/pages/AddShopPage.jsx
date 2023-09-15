@@ -74,7 +74,7 @@ export default function AddShopPage() {
                 value={formik.values.shopName}
               />
               {formik.errors.shopName && formik.touched.shopName && (
-                <p className='text-red-600'>{formik.errors.shopName}</p>
+                <p className='text-amber-400'>{formik.errors.shopName}</p>
               )}
             </div>
             <div className='mb-3'>
@@ -87,7 +87,7 @@ export default function AddShopPage() {
                 value={formik.values.startYear}
               />
               {formik.errors.startYear && formik.touched.startYear && (
-                <p className='text-red-600'>{formik.errors.startYear}</p>
+                <p className='text-amber-400'>{formik.errors.startYear}</p>
               )}
             </div>
             <div className='mb-3'>
@@ -100,7 +100,7 @@ export default function AddShopPage() {
                 value={formik.values.town}
               />
               {formik.errors.town && formik.touched.town && (
-                <p className='text-red-600'>{formik.errors.town}</p>
+                <p className='text-amber-400'>{formik.errors.town}</p>
               )}
             </div>
             <div className='mb-3'>
@@ -113,7 +113,7 @@ export default function AddShopPage() {
                 value={formik.values.imageUrl}
               />
               {formik.errors.imageUrl && formik.touched.imageUrl && (
-                <p className='text-red-600'>{formik.errors.imageUrl}</p>
+                <p className='text-amber-400'>{formik.errors.imageUrl}</p>
               )}
             </div>
           </div>
@@ -126,7 +126,7 @@ export default function AddShopPage() {
               value={formik.values.description}
             ></textarea>
             {formik.errors.description && formik.touched.description && (
-              <p className='text-red-600'>{formik.errors.description}</p>
+              <p className='text-amber-400'>{formik.errors.description}</p>
             )}
           </div>
         </div>

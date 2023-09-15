@@ -1,34 +1,36 @@
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged } from 'firebase/auth';
 import { createContext, useContext, useEffect, useState } from 'react';
+import { auth } from '../firebase/firebase';
 
 const AuthContext = createContext({
   email: '',
-  loginStatus: '',
+  loginStatus: false,
 });
 
 export default function AuthProvider(props) {
-  const [fireUser, setFireUser] = useState({});
+  const [fireUser, setFireUser] = useState(auth.currentUser);
+  const accToken = localStorage.getItem('fbToken');
 
-  const email = fireUser.email;
-  const userId = fireUser.uid;
-  let loginStatus = !!email;
-
-  const ctx = {
-    email,
-    userId,
-    loginStatus,
-  };
+  const userEmail = fireUser?.email;
+  let loginStatus = userEmail ? true : false;
+  loginStatus = !!accToken;
 
   useEffect(() => {
-    const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setFireUser(user);
+        localStorage.setItem('fbToken', user.accessToken);
       } else {
         setFireUser({});
+        localStorage.removeItem('fbToken');
       }
     });
   }, []);
+
+  const ctx = {
+    userEmail,
+    loginStatus,
+  };
 
   return (
     <AuthContext.Provider value={ctx}>{props.children}</AuthContext.Provider>
