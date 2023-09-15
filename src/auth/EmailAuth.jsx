@@ -52,7 +52,7 @@ export default function EmailAuth() {
             onBlur={formik.handleBlur}
           />
           {formik.errors.email && formik.touched.email && (
-            <p className='text-red-600'>{formik.errors.email}</p>
+            <p className='text-amber-400'>{formik.errors.email}</p>
           )}
         </div>
         <div className='mb-3'>
@@ -66,7 +66,7 @@ export default function EmailAuth() {
             onBlur={formik.handleBlur}
           />
           {formik.errors.password && formik.touched.password && (
-            <p className='text-red-600'>{formik.errors.password}</p>
+            <p className='text-amber-400'>{formik.errors.password}</p>
           )}
         </div>
       </div>
