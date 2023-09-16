@@ -5,7 +5,7 @@ import { auth } from '../firebase/firebase';
 const AuthContext = createContext({
   email: '',
   loginStatus: false,
-  userUid: '',
+  userId: '',
 });
 
 export default function AuthProvider(props) {

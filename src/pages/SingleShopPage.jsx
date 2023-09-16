@@ -34,7 +34,6 @@ export default function SingleShopPage() {
       console.log('No such document!');
     }
   }
-
   async function getComments() {
     const querySnapshot = await getDocs(
       collection(db, 'shops', params.shopId, 'comments')
@@ -54,13 +53,16 @@ export default function SingleShopPage() {
     displayName: '',
     commentText: '',
     date: timestamp,
+    userId: ctx.userId,
   };
   // const validationSchema = Yup.object({});
   const formik = useFormik({
     initialValues: initialValues,
     // validationSchema,
     onSubmit: (values) => {
-      addDocumentToSubcollection(values);
+      console.log('values ===', values);
+      const valWithUserId = { userId: ctx.userId, ...values };
+      addDocumentToSubcollection(valWithUserId);
     },
   });
   async function addDocumentToSubcollection(newComment) {
@@ -71,7 +73,7 @@ export default function SingleShopPage() {
       const docRef = await addDoc(commentsSubColRef, newComment);
       setCommentsArr((prevComments) => [
         ...prevComments,
-        { id: docRef.id, ...newComment, uid: ctx.userUid },
+        { id: docRef.id, userId: ctx.userId, ...newComment },
       ]);
       console.log('Document added to subcollection successfully');
       formik.handleReset();
@@ -92,10 +94,11 @@ export default function SingleShopPage() {
       </div>
       <img className='w-full' src={imageUrl} alt={`${shopName} company logo`} />
       <p className='text-[#b3b3b3] leading-6 my-5'>{description}</p>
-      <div className='flex gap-8'>
-        <ul className='text-white w-2/3 h-fit flex flex-col gap-3'>
+      <div className='flex gap-8 flex-col-reverse sm:flex-row'>
+        <ul className='text-white w-full sm:w-2/3 h-fit flex flex-col gap-3'>
           {commentsArr.map((cObj) => {
             const formattedDate = cObj.date.toDate().toLocaleDateString();
+            const isOwner = cObj?.userId === ctx.userId ? true : false;
             return (
               <li
                 key={cObj.id}
@@ -108,13 +111,14 @@ export default function SingleShopPage() {
                   <p className='text-neutral-200 text-sm'>{formattedDate}</p>
                 </div>
                 <h4 className='py-1'>{cObj.commentText}</h4>
+                {isOwner && <button>X</button>}
               </li>
             );
           })}
         </ul>
         <form
           onSubmit={formik.handleSubmit}
-          className='text-center flex flex-col w-1/3 gap-5'
+          className='text-center flex flex-col w-full sm:w-1/3 gap-5'
         >
           <input
             className='p-2 text-black bg-gray-200'
