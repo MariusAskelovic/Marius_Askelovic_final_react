@@ -1,5 +1,12 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { addDoc, collection, doc, getDoc, getDocs } from 'firebase/firestore';
+import {
+  Timestamp,
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+} from 'firebase/firestore';
 import { db } from '../firebase/firebase';
 import { useEffect, useState } from 'react';
 import { useAuth } from '../store/AuthProvider';
@@ -13,7 +20,6 @@ export default function SingleShopPage() {
   const params = useParams();
   const [shopData, setShopData] = useState({});
   const [commentsArr, setCommentsArr] = useState([]);
-  const navigate = useNavigate();
   useEffect(() => {
     getData();
     getComments();
@@ -39,44 +45,43 @@ export default function SingleShopPage() {
         id: doc.id,
         ...doc.data(),
       });
-      console.log('comments ===', comments);
     });
     setCommentsArr(comments);
   }
-
+  const currentDate = new Date();
+  const timestamp = Timestamp.fromDate(currentDate);
   const initialValues = {
-    displayname: '',
+    displayName: '',
     commentText: '',
-    date: '',
+    date: timestamp,
   };
   // const validationSchema = Yup.object({});
   const formik = useFormik({
     initialValues: initialValues,
     // validationSchema,
     onSubmit: (values) => {
-      console.log(values);
-      newComment();
+      addDocumentToSubcollection(values);
     },
   });
-
-  async function newComment() {
-    // const date = new Date().toISOString();
-    // console.log('date ===', date);
-    const newComment = {
-      displayName: formik.values.displayName,
-      comment: formik.values.commentText,
-    };
+  async function addDocumentToSubcollection(newComment) {
+    const shopsRef = collection(db, 'shops');
+    const specificShopRef = doc(shopsRef, params.shopId);
+    const commentsSubColRef = collection(specificShopRef, 'comments');
     try {
-      await addDoc(collection(db, 'shops'), newComment);
-      navigate('/');
-      toast.success('New comment created');
+      const docRef = await addDoc(commentsSubColRef, newComment);
+      setCommentsArr((prevComments) => [
+        ...prevComments,
+        { id: docRef.id, ...newComment, uid: ctx.userUid },
+      ]);
+      console.log('Document added to subcollection successfully');
+      formik.handleReset();
     } catch (error) {
-      navigate('/');
-      toast.error(error);
+      console.error('Error adding document to subcollection: ', error);
     }
   }
 
   const { shopName, imageUrl, description, startYear, town } = shopData;
+
   return (
     <div className='container my-8 max-w-4xl'>
       <h1 className='text-white text-3xl font-extrabold'>{shopName}</h1>
@@ -87,15 +92,27 @@ export default function SingleShopPage() {
       </div>
       <img className='w-full' src={imageUrl} alt={`${shopName} company logo`} />
       <p className='text-[#b3b3b3] leading-6 my-5'>{description}</p>
-      <div className='flex gap-5'>
-        {/* List Comments */}
-        <ul className='text-white border-2 border-[#898989] p-4 w-2/3'>
-          {commentsArr.map((cObj) => (
-            <li key={cObj.id}>{cObj.comment}</li>
-          ))}
+      <div className='flex gap-8'>
+        <ul className='text-white w-2/3 h-fit flex flex-col gap-3'>
+          {commentsArr.map((cObj) => {
+            const formattedDate = cObj.date.toDate().toLocaleDateString();
+            return (
+              <li
+                key={cObj.id}
+                className='border-b-4 border-neutral-500 p-3 rounded-sm'
+              >
+                <div className='flex justify-between mb-1 items-center'>
+                  <h3 className='py-1 px-3 bg-white rounded-sm text-black inline-block'>
+                    {cObj.displayName}
+                  </h3>
+                  <p className='text-neutral-200 text-sm'>{formattedDate}</p>
+                </div>
+                <h4 className='py-1'>{cObj.commentText}</h4>
+              </li>
+            );
+          })}
         </ul>
-        {/* Comments Section */}
-        {/* <form
+        <form
           onSubmit={formik.handleSubmit}
           className='text-center flex flex-col w-1/3 gap-5'
         >
@@ -108,15 +125,21 @@ export default function SingleShopPage() {
             value={formik.values.displayName}
           />
           <textarea
-            className='bg-gray-200 resize-none h-52 p-2'
+            className='bg-gray-200 resize-none h-36 p-2'
             name='commentText'
             id='commentText'
             onChange={formik.handleChange}
             value={formik.values.commentText}
             placeholder='Your comment'
           />
+          <input
+            type='hidden'
+            name='date'
+            id='date'
+            value={formik.values.date.toDate()}
+          />
           <Button>Comment</Button>
-        </form> */}
+        </form>
       </div>
     </div>
   );

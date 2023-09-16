@@ -17,14 +17,14 @@ export default function AddShopPage() {
   };
   const validationSchema = Yup.object({
     shopName: Yup.string()
-      .min(4, 'Minimum 4 symbols')
+      .min(2, 'Minimum 2 symbols')
       .required('Shop Name is required'),
     description: Yup.string()
       .min(6, 'Minimum 6 symbols')
       .required('Description is required'),
     startYear: Yup.number()
-      .min(1970, 'Year must be between 1970 and 2025')
-      .max(2025, 'Year must be between 1970 and 2025')
+      .min(1800, 'Year must be between 1800 and 2025')
+      .max(2025, 'Year must be between 1800 and 2025')
       .required('Shop Start Date is required'),
     town: Yup.string().min(4, 'Minimum 4 symbols').required('Town is required'),
     imageUrl: Yup.string()

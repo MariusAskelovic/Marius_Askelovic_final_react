@@ -5,15 +5,16 @@ import { auth } from '../firebase/firebase';
 const AuthContext = createContext({
   email: '',
   loginStatus: false,
+  userUid: '',
 });
 
 export default function AuthProvider(props) {
   const [fireUser, setFireUser] = useState(auth.currentUser);
   const accToken = localStorage.getItem('fbToken');
-
   const userEmail = fireUser?.email;
   let loginStatus = userEmail ? true : false;
   loginStatus = !!accToken;
+  const userId = fireUser?.uid;
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -30,6 +31,7 @@ export default function AuthProvider(props) {
   const ctx = {
     userEmail,
     loginStatus,
+    userId,
   };
 
   return (
