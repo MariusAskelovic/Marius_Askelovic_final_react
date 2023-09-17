@@ -3,6 +3,7 @@ import {
   Timestamp,
   addDoc,
   collection,
+  deleteDoc,
   doc,
   getDoc,
   getDocs,
@@ -12,6 +13,7 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '../store/AuthProvider';
 import Button from '../components/Button';
 import { useFormik } from 'formik';
+import { RiChatDeleteFill } from 'react-icons/ri';
 import * as Yup from 'yup';
 import toast from 'react-hot-toast';
 
@@ -82,6 +84,20 @@ export default function SingleShopPage() {
     }
   }
 
+  async function handleDelete(idToDelete) {
+    const shopsRef = collection(db, 'shops');
+    const specificShopRef = doc(shopsRef, params.shopId);
+    const commentsSubColRef = collection(specificShopRef, 'comments');
+    try {
+      await deleteDoc(doc(commentsSubColRef, idToDelete));
+      setCommentsArr((prevComments) =>
+        prevComments.filter((cObj) => cObj.id !== idToDelete)
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   const { shopName, imageUrl, description, startYear, town } = shopData;
 
   return (
@@ -102,16 +118,27 @@ export default function SingleShopPage() {
             return (
               <li
                 key={cObj.id}
-                className='border-b-4 border-neutral-500 p-3 rounded-sm'
+                className={`border-b-2 ${
+                  isOwner ? 'border-red-600' : 'border-neutral-500'
+                } pt-3 pb-1 rounded-sm`}
               >
-                <div className='flex justify-between mb-1 items-center'>
-                  <h3 className='py-1 px-3 bg-white rounded-sm text-black inline-block'>
-                    {cObj.displayName}
-                  </h3>
+                <div className='flex justify-between mb-1 items-center group'>
+                  <div className='flex gap-1 items-center'>
+                    <h3 className='py-1 px-3 bg-white rounded-sm text-black inline-block'>
+                      {cObj.displayName}
+                    </h3>
+                    {isOwner && (
+                      <button
+                        className='hidden group-hover:flex'
+                        onClick={() => handleDelete(cObj.id)}
+                      >
+                        <RiChatDeleteFill size={24} color='brown' />
+                      </button>
+                    )}
+                  </div>
                   <p className='text-neutral-200 text-sm'>{formattedDate}</p>
                 </div>
-                <h4 className='py-1'>{cObj.commentText}</h4>
-                {isOwner && <button>X</button>}
+                <h4 className='py-1 text-justify'>{cObj.commentText}</h4>
               </li>
             );
           })}
